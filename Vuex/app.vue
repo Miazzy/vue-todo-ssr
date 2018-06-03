@@ -3,7 +3,7 @@
     <!-- 单独铺一层绝对定位的 div，使背景虚化 -->
     <div class="cover"></div>
     <Header />
-    <p>{{fullNmae}}</p>
+    <p>{{fullName}}</p>
     <Content />
     <Footer />
   </div>
@@ -13,6 +13,7 @@
 import Header from "./layout/header.vue";
 import Content from "./views/todo/content.vue";
 import Footer from "./layout/footer.jsx";
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -31,9 +32,11 @@ export default {
     count() {
       return this.$store.state.count
     },
-    fullNmae() {
-      return this.$store.getters.fullName
-    }
+    ...mapState(['count']),
+    ...mapGetters(['fullName'])
+    // fullName() {
+    //   return this.$store.getters.fullName
+    // }
   }
 };
 </script>
